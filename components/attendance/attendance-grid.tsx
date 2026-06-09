@@ -8,6 +8,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export type AttendanceStatus = "asistencia" | "no_asistencia" | "retardo" | "sin_marcar"
 
@@ -81,6 +82,7 @@ export function AttendanceGrid({ students, onAttendanceChange, onStatsChange, ha
   const [statusFilter, setStatusFilter] = useState<AttendanceStatus | "todos">("todos")
   const [columnOrder, setColumnOrder] = useState<("nombre" | "matricula")[]>(["nombre", "matricula"])
   const [sortConfig, setSortConfig] = useState<{ key: "numero" | "nombre" | "matricula" | "faltasAcumuladas", direction: "asc" | "desc" } | null>(null)
+  const isMobile = useIsMobile()
   
   const gridRef = useRef<HTMLDivElement>(null)
   const searchInputRef = useRef<HTMLInputElement>(null)
@@ -643,7 +645,7 @@ export function AttendanceGrid({ students, onAttendanceChange, onStatsChange, ha
                       }}
                       className={cn(
                         "cursor-default border-b border-border/50 transition-colors",
-                        isSelected
+                        isSelected && !isMobile
                           ? "bg-accent/60"
                           : student.faltasAcumuladas !== undefined && student.faltasAcumuladas >= 3
                           ? "bg-red-500/5 hover:bg-red-500/10"
@@ -652,7 +654,7 @@ export function AttendanceGrid({ students, onAttendanceChange, onStatsChange, ha
                     >
                       {/* Indicator strip + number */}
                       <td className="relative px-5 py-2">
-                        {isSelected && (
+                        {isSelected && !isMobile && (
                           <span className="absolute inset-y-0 left-0 w-0.5 rounded-r bg-primary" />
                         )}
                         {!isSelected && student.faltasAcumuladas !== undefined && student.faltasAcumuladas >= 3 && (

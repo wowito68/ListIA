@@ -201,10 +201,12 @@ export function AttendanceGrid({ students, onAttendanceChange, onStatsChange, ha
   )
 
   const advance = useCallback(() => {
-    if (selectedIndex < filteredStudents.length - 1) {
-      setSelectedIndex((prev) => prev + 1)
-    }
-  }, [selectedIndex, filteredStudents.length])
+    setSelectedIndex((prev) => {
+      const next = Math.min(prev + 1, filteredStudents.length - 1)
+      setSelectedIndices(new Set([next]))
+      return next
+    })
+  }, [filteredStudents.length])
 
   const markAllPresent = useCallback(() => {
     setAttendance((prev) => {

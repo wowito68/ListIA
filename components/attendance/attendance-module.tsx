@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo, useEffect } from "react"
+import { useState, useMemo, useEffect, useRef } from "react"
 import {
   addMonths,
   subMonths,
@@ -82,7 +82,15 @@ export function AttendanceModule() {
     format(subDays(new Date(), 2), "yyyy-MM-dd"),
   ])
   const isMobile = useIsMobile()
+  const hasInitializedMobile = useRef(false)
   const [isFocusMode, setIsFocusMode] = useState(false)
+
+  useEffect(() => {
+    if (isMobile && !hasInitializedMobile.current) {
+      setIsFocusMode(true)
+      hasInitializedMobile.current = true
+    }
+  }, [isMobile])
 
   const selectedCourse = SAMPLE_COURSES.find((c) => c.id === selectedCourseId)!
 
@@ -528,7 +536,7 @@ export function AttendanceModule() {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="size-9 shrink-0 hidden sm:flex"
+                  className="size-9 shrink-0"
                   onClick={() => setIsFocusMode(!isFocusMode)}
                   title={isFocusMode ? "Salir de modo concentración" : "Modo concentración"}
                 >

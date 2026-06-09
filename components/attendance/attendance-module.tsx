@@ -288,10 +288,10 @@ export function AttendanceModule() {
     }))
 
   return (
-    <div className="flex h-full overflow-hidden bg-background">
+    <div className="flex flex-col md:flex-row h-full overflow-hidden bg-background">
       {/* ── Left panel: calendar ── */}
       {!isFocusMode && (
-        <aside className="flex w-64 shrink-0 flex-col border-r border-border bg-card/40 transition-all duration-300">
+        <aside className="flex w-full md:w-64 h-[45vh] md:h-auto shrink-0 flex-col border-b md:border-b-0 md:border-r border-border bg-card/40 transition-all duration-300">
           {/* Month nav */}
         <div className="flex items-center justify-between border-b border-border px-4 py-3">
           <button

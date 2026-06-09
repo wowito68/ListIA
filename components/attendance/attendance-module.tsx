@@ -84,11 +84,6 @@ export function AttendanceModule() {
   const isMobile = useIsMobile()
   const [isFocusMode, setIsFocusMode] = useState(false)
 
-  // Enable focus mode by default on mobile
-  useEffect(() => {
-    if (isMobile) setIsFocusMode(true)
-  }, [isMobile])
-
   const selectedCourse = SAMPLE_COURSES.find((c) => c.id === selectedCourseId)!
 
   const currentTime = new Date().toLocaleTimeString("es-MX", {
@@ -513,9 +508,9 @@ export function AttendanceModule() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <Select value={selectedCourseId} onValueChange={setSelectedCourseId}>
-                <SelectTrigger className="w-[260px]">
+                <SelectTrigger className="w-full sm:w-[260px]">
                   <SelectValue placeholder="Seleccionar grupo" />
                 </SelectTrigger>
                 <SelectContent>
@@ -527,30 +522,33 @@ export function AttendanceModule() {
                   ))}
                 </SelectContent>
               </Select>
-              <KeyboardHelp />
-              <Button
-                variant="outline"
-                size="icon"
-                className="size-9 shrink-0"
-                onClick={() => setIsFocusMode(!isFocusMode)}
-                title={isFocusMode ? "Salir de modo concentración" : "Modo concentración"}
-              >
-                {isFocusMode ? <Minimize2 className="size-4" /> : <Maximize2 className="size-4" />}
-              </Button>
-              <Button 
-                onClick={handleSave} 
-                disabled={isSaving} 
-                size="sm"
-                className="relative"
-              >
+              
+              <div className="flex items-center gap-2 w-full sm:w-auto justify-end mt-1 sm:mt-0">
+                <KeyboardHelp />
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="size-9 shrink-0 hidden sm:flex"
+                  onClick={() => setIsFocusMode(!isFocusMode)}
+                  title={isFocusMode ? "Salir de modo concentración" : "Modo concentración"}
+                >
+                  {isFocusMode ? <Minimize2 className="size-4" /> : <Maximize2 className="size-4" />}
+                </Button>
+                <Button 
+                  onClick={handleSave} 
+                  disabled={isSaving} 
+                  size="sm"
+                  className="relative flex-1 sm:flex-none"
+                >
                 {hasUnsavedChanges && !isSaving && (
                   <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-amber-400 ring-2 ring-background" />
                 )}
                 <Save className="mr-2 size-3.5" />
                 {isSaving ? "Guardando..." : "Guardar"}
               </Button>
+            </div>
 
-              {/* Auto-save indicator */}
+            {/* Auto-save indicator */}
               {hasUnsavedChanges && autoSaveCountdown !== null && !isSaving && (
                 <span className="text-[10px] text-muted-foreground/70 tabular-nums">
                   Auto en {Math.floor(autoSaveCountdown / 60)}:{String(autoSaveCountdown % 60).padStart(2, "0")}

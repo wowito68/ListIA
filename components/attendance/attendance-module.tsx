@@ -52,6 +52,7 @@ import { AttendanceGrid } from "./attendance-grid"
 import { KeyboardHelp } from "./keyboard-help"
 import { SAMPLE_COURSES, SAMPLE_EVENTS } from "@/lib/sample-data"
 import { cn } from "@/lib/utils"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 const EVENT_DOT: Record<string, string> = {
   class: "bg-blue-500",
@@ -80,7 +81,13 @@ export function AttendanceModule() {
     format(subDays(new Date(), 1), "yyyy-MM-dd"),
     format(subDays(new Date(), 2), "yyyy-MM-dd"),
   ])
+  const isMobile = useIsMobile()
   const [isFocusMode, setIsFocusMode] = useState(false)
+
+  // Enable focus mode by default on mobile
+  useEffect(() => {
+    if (isMobile) setIsFocusMode(true)
+  }, [isMobile])
 
   const selectedCourse = SAMPLE_COURSES.find((c) => c.id === selectedCourseId)!
 

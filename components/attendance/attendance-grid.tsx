@@ -831,7 +831,7 @@ export function AttendanceGrid({ students, onAttendanceChange, onStatsChange, ha
                               <span className="font-semibold text-foreground text-sm">2 <span className="text-[10px] font-normal text-muted-foreground">acumuladas</span></span>
                             </div>
                             <div className="flex flex-col rounded-md bg-secondary/60 p-2.5">
-                              <span className="text-muted-foreground mb-0.5">Retardos</span>
+                              <span className="text-muted-foreground mb-0.5">Justificados</span>
                               <span className="font-semibold text-foreground text-sm">1 <span className="text-[10px] font-normal text-muted-foreground">acumulado</span></span>
                             </div>
                           </div>
@@ -843,7 +843,7 @@ export function AttendanceGrid({ students, onAttendanceChange, onStatsChange, ha
                               <span className="h-2 w-full rounded-full bg-emerald-500" title="Asistencia" />
                               <span className="h-2 w-full rounded-full bg-red-500" title="Falta" />
                               <span className="h-2 w-full rounded-full bg-emerald-500" title="Asistencia" />
-                              <span className="h-2 w-full rounded-full bg-amber-400" title="Retardo" />
+                              <span className="h-2 w-full rounded-full bg-blue-500" title="Justificado" />
                             </div>
                           </div>
                         </div>
@@ -855,7 +855,7 @@ export function AttendanceGrid({ students, onAttendanceChange, onStatsChange, ha
                 
                 {/* Status Toggle Area for Mobile */}
                 <div className="flex items-center gap-2 mt-1 ml-8">
-                  {(["asistencia", "no_asistencia", "retardo"] as AttendanceStatus[]).map((s) => {
+                  {(["asistencia", "no_asistencia", "justificado"] as AttendanceStatus[]).map((s) => {
                     const cfg = STATUS_CONFIG[s]
                     const isActive = status === s
                     return (
@@ -902,7 +902,7 @@ export function AttendanceGrid({ students, onAttendanceChange, onStatsChange, ha
         <span className="text-xs text-muted-foreground/60">↑↓ Navegar</span>
         <span className="text-xs font-semibold text-emerald-500/80">A Asistencia</span>
         <span className="text-xs font-semibold text-red-400/80">N No asistió</span>
-        <span className="text-xs font-semibold text-amber-400/80">R Retardo</span>
+        <span className="text-xs font-semibold text-blue-500/80">J Justificante</span>
         <span className="text-xs text-muted-foreground/60">Esc Limpiar fila</span>
         <span className="text-xs text-muted-foreground/60">Enter Ciclar</span>
         <span className="text-xs text-muted-foreground/60">Ctrl+Z Deshacer</span>

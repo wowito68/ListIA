@@ -11,6 +11,7 @@ import {
   ChevronDown,
   LogOut,
   Bell,
+  FileCheck,
 } from "lucide-react"
 
 import {
@@ -48,6 +49,7 @@ const navigation = [
     title: "Registros",
     items: [
       { title: "Historial & Reportes", href: "/historial", icon: History },
+      { title: "Justificantes", href: "/justificantes", icon: FileCheck },
     ],
   },
   {

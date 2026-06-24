@@ -12,10 +12,9 @@ import { Kbd } from "@/components/ui/kbd"
 export function KeyboardHelp() {
   const shortcuts = [
     { keys: ["↑", "↓"], action: "Navegar filas" },
-    { keys: ["J", "K"], action: "Navegar (Vim)" },
-    { keys: ["A"], action: "Marcar Asistencia" },
-    { keys: ["N"], action: "No asistió" },
-    { keys: ["R"], action: "Retardo" },
+    { keys: ["A"], action: "Marcar Presente" },
+    { keys: ["N"], action: "Falta" },
+    { keys: ["J"], action: "Justificante" },
     { keys: ["Esc"], action: "Limpiar fila" },
     { keys: ["Enter"], action: "Ciclar y avanzar" },
     { keys: ["/"], action: "Buscar alumno" },
@@ -54,7 +53,7 @@ export function KeyboardHelp() {
             ))}
           </div>
           <p className="text-xs text-muted-foreground">
-            Al marcar con A, N o R el cursor avanza automáticamente a la siguiente fila.
+            Al marcar con A, N o J el cursor avanza automáticamente a la siguiente fila.
           </p>
         </div>
       </PopoverContent>

@@ -356,12 +356,6 @@ export function JustificationsModule() {
               Recepción, extracción y revisión de justificantes académicos enviados por correo electrónico.
             </p>
           </div>
-          <div className="flex items-center gap-2 rounded-md bg-blue-500/10 px-3 py-2 text-sm text-blue-600 dark:text-blue-400 border border-blue-500/20">
-            <Info className="h-4 w-4 shrink-0" />
-            <span className="leading-tight text-xs font-medium max-w-xs">
-              Prototipo visual de la segunda etapa. La integración real con Gmail y validación automática de documentos se contempla para una etapa posterior.
-            </span>
-          </div>
         </div>
 
         {/* Métricas */}
